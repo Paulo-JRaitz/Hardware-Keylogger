@@ -104,3 +104,13 @@ Para a realização desse projeto prático de hardware keylogger foi utilizados 
 - > O Botão dispara a função que carregar no Serial monitor o registro de teclas pressionadas no teclado.
 
 - > Todos os registros serão gravados em um cartão de memória uando o Módulo de cartão SD
+
+#
+
+## Contributors
+
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/GGontijo"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/38219914?v=4" width="100px;" alt="Gabriel Gontijo"/><br /><sub><b>Gabriel Gontijo</b></sub></a><br /><a href="https://github.com/GGontijo"></a></td>
+  </tr>
+</table>
