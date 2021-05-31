@@ -105,6 +105,6 @@ Para a realização desse projeto prático de hardware keylogger foi utilizados 
 
 - > O Botão dispara a função que carregar no Serial monitor o registro de teclas pressionadas no teclado.
 
-- > Todos os registros serão gravados em um cartão de memória uando o Módulo de cartão SD
+- > Todos os registros serão gravados em um cartão de memória usando o Módulo de cartão SD
 
 #
