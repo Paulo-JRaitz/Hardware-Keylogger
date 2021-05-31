@@ -2,8 +2,10 @@
 <span> Projeto de prova de conceito</span></h1>
 
 <h1 align="center">
-    <img alt="Paulo Raitz" src="./utils/Paulo.svg" width="10%">
+<a href="https://www.github.com/Paulo-JRaitz" target="_blank"><img align="center"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/69216941?v=4"width="100px;" alt="Paulo Raitz"/></a>
+<a href="https://www.github.com/GGontijo" target="_blank"><img align="left"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/38219914?v=4" width="100px;" alt="Gabriel Gontijo"/></a>
 </h1>
+
 <p align="center">
   <img src="https://img.shields.io/static/v1?label=Hardware&message=Keylogger&color=F37135&labelColor=262626" alt="Hardware keylogger" >
 </p>
@@ -106,11 +108,3 @@ Para a realização desse projeto prático de hardware keylogger foi utilizados 
 - > Todos os registros serão gravados em um cartão de memória uando o Módulo de cartão SD
 
 #
-
-## Contributors
-
-<table>
-  <tr>
-    <td align="center"><a href="https://github.com/GGontijo"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/38219914?v=4" width="100px;" alt="Gabriel Gontijo"/><br /><sub><b>Gabriel Gontijo</b></sub></a><br /><a href="https://github.com/GGontijo"></a></td>
-  </tr>
-</table>
